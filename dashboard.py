@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
 import locale
-import os
+#import os
 import requests
 
 # Unduh file dari tautan berbagi
@@ -14,15 +14,16 @@ with open('all_data_ecommerce.csv', 'wb') as f:
     f.write(response.content)
 
 # Baca file CSV dan gunakan dalam aplikasi Streamlit
-import pandas as pd
+#import pandas as pd
 
 data = pd.read_csv('all_data_ecommerce.csv')
-st.write(data)
+data['order_purchase_timestamp'] = pd.to_datetime(data['order_purchase_timestamp'])
+#st.write(data)
 
 # Membaca data dari file CSV dengan format tanggal yang benar
-file_path = os.path.join('C:', 'Users', 'USER', 'Project_Python', 'Dicoding', 'proyek_analisis_data', 'dashboard', 'all_data_ecommerce.csv')
-data = pd.read_csv('C:/Users/USER/Project_Python/Dicoding/proyek_analisis_data/dashboard/all_data_ecommerce.csv', parse_dates=['order_purchase_timestamp'])
-data['order_purchase_timestamp'] = pd.to_datetime(data['order_purchase_timestamp'])
+#file_path = os.path.join('C:', 'Users', 'USER', 'Project_Python', 'Dicoding', 'proyek_analisis_data', 'dashboard', 'all_data_ecommerce.csv')
+#data = pd.read_csv('C:/Users/USER/Project_Python/Dicoding/proyek_analisis_data/dashboard/all_data_ecommerce.csv', parse_dates=['order_purchase_timestamp'])
+#data['order_purchase_timestamp'] = pd.to_datetime(data['order_purchase_timestamp'])
 
 # Menambahkan header untuk dashboard 
 st.title('Dashboard Interaktif') 
