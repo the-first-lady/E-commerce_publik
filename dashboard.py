@@ -20,7 +20,7 @@ data = pd.read_csv('all_data_ecommerce.csv')
 st.write(data)
 
 # Membaca data dari file CSV dengan format tanggal yang benar
-#file_path = os.path.join('C:', 'Users', 'USER', 'Project_Python', 'Dicoding', 'proyek_analisis_data', 'dashboard', 'all_data_ecommerce.csv')
+file_path = os.path.join('C:', 'Users', 'USER', 'Project_Python', 'Dicoding', 'proyek_analisis_data', 'dashboard', 'all_data_ecommerce.csv')
 data = pd.read_csv('C:/Users/USER/Project_Python/Dicoding/proyek_analisis_data/dashboard/all_data_ecommerce.csv', parse_dates=['order_purchase_timestamp'])
 data['order_purchase_timestamp'] = pd.to_datetime(data['order_purchase_timestamp'])
 
