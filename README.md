@@ -5,15 +5,19 @@ Proyek ini bertujuan untuk menganalisis data E-Commerce dan menjawab beberapa pe
 ### Setup Environment - Anaconda
 
 **Buat Environment Baru:**
+
 conda create --name ecommerce_publik python=3.11.7
 
 **Aktifkan Environment:**
+
 conda activate ecommerce_publik
 
 **Pindah ke direktori proyek Anda:**
+
 cd C:\Users\USER\Project_Python\Dicoding\proyek_analisis_data
 
 **Instal Dependensi:**
+
 pip install -r requirements.tx
 
 ### Setup Environment - Shell/Terminal
