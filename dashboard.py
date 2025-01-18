@@ -6,6 +6,8 @@ import streamlit as st
 import locale
 #import os
 import requests
+import zipfile 
+import io
 
 # Unduh file dari tautan berbagi
 #url = 'https://drive.google.com/file/d/1ANRUYvOHgySQiG3bKIXbUVLFzhPwCBvu/view?usp=drive_link'
