@@ -84,7 +84,8 @@ with col2:
 with col3: 
     st.write('Jumlah Revenue :') 
     payment_count = filtered_data['payment_value'].sum() 
-    locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')  # Mengatur lokal ke Amerika Serikat untuk format mata uang USD
+#    locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')  # Mengatur lokal ke Amerika Serikat untuk format mata uang USD
+    locale.setlocale(locale.LC_ALL, 'C.UTF-8')
     formatted_payment_count = locale.currency(payment_count, grouping=True)
     st.subheader(formatted_payment_count)
 
