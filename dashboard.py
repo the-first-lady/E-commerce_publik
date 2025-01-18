@@ -9,6 +9,8 @@ import locale
 import requests
 import zipfile 
 import io
+from babel.numbers import format_currency
+
 
 # Unduh file dari tautan berbagi
 #url = 'https://drive.google.com/file/d/1ANRUYvOHgySQiG3bKIXbUVLFzhPwCBvu/view?usp=drive_link'
