@@ -46,7 +46,8 @@ max_date = data['order_purchase_timestamp'].max()
 start_date, end_date = st.sidebar.date_input("Pilih Rentang waktu :", [min_date, max_date], min_value=min_date, max_value=max_date)
 
 # Menambahkan logo ke sidebar 
-st.sidebar.image("C:/Users/USER/Project_Python/Dicoding/proyek_analisis_data/dashboard/E-Commerce-Logo-PNG-Clipart-Background.png")
+#st.sidebar.image("C:/Users/USER/Project_Python/Dicoding/proyek_analisis_data/dashboard/E-Commerce-Logo-PNG-Clipart-Background.png")
+st.sidebar.image("E-Commerce-Logo-PNG-Clipart-Background.png")
 
 # Menambahkan judul di tengah pada sidebar
 st.sidebar.markdown(
