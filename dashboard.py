@@ -1,3 +1,4 @@
+
 import pandas as pd
 import matplotlib
 import matplotlib.pyplot as plt
@@ -87,11 +88,17 @@ with col3:
 #    locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')  # Mengatur lokal ke Amerika Serikat untuk format mata uang USD
 #    locale.setlocale(locale.LC_ALL, 'C.UTF-8')
     # Mengatur lokal ke Amerika Serikat untuk format mata uang USD 
-    try: 
-        locale.setlocale(locale.LC_ALL, 'en_US.UTF-8') 
-    except locale.Error: 
-            locale.setlocale(locale.LC_ALL, 'C.UTF-8')
-    formatted_payment_count = locale.currency(payment_count, grouping=True)
+#    try: 
+#        locale.setlocale(locale.LC_ALL, 'en_US.UTF-8') 
+#    except locale.Error: 
+#            locale.setlocale(locale.LC_ALL, 'C.UTF-8')
+#    formatted_payment_count = locale.currency(payment_count, grouping=True)
+
+    if pd.notnull(payment_count): 
+        formatted_payment_count = format_currency(payment_count, 'USD', locale='en_US') 
+    else: 
+        formatted_payment_count = "N/A"
+        
     st.subheader(formatted_payment_count)
 
 filtered_df = data[(data['order_purchase_timestamp'] >= pd.to_datetime(start_date)) & (data['order_purchase_timestamp'] <= pd.to_datetime(end_date))]
