@@ -10,8 +10,6 @@ conda create --name ecommerce_publik python=3.11.7
 **Aktifkan Environment:**
 conda activate ecommerce_publik
 
-[Unduh file besar di sini](https://drive.google.com/file/d/1ANRUYvOHgySQiG3bKIXbUVLFzhPwCBvu/view?usp=drive_link)
-
 **Pindah ke direktori proyek Anda:**
 cd C:\Users\USER\Project_Python\Dicoding\proyek_analisis_data
 
