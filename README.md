@@ -2,38 +2,42 @@
 
 Proyek ini bertujuan untuk menganalisis data E-Commerce dan menjawab beberapa pertanyaan bisnis penting.
 
-### Setup Environment - Anaconda
+### 1. Setup Environment - Anaconda
 
-**1. Buat Environment Baru:**
+**1.1. Buat Environment Baru:**
+
 conda create --name ecommerce_publik python=3.11.7
 
-**2. Aktifkan Environment:**
+**1.2. Aktifkan Environment:**
+
 conda activate ecommerce_publik
 
-**3. Pindah ke direktori proyek Anda:**
+**1.3. Pindah ke direktori proyek Anda:**
+
 cd C:\Users\USER\Project_Python\Dicoding\proyek_analisis_data
 
-**4. Instal Dependensi:**
+**1.4. Instal Dependensi:**
+
 pip install -r requirements.tx
 
-### Setup Environment - Shell/Terminal
+### 2. Setup Environment - Shell/Terminal
 
-**1. Buat Direktori Proyek:**
+**2.1. Buat Direktori Proyek:**
 
 mkdir proyek_analisis_data
 cd proyek_analisis_data
 
-**2. Instal pipenv dan Buat Environment:**
+**2.2. Instal pipenv dan Buat Environment:**
 
 pip install pipenv
 pipenv install
 pipenv shell
 
-**3. Instal Dependensi:**
+**2.3. Instal Dependensi:**
 
 pip install -r requirements.txt
 
-### Run steamlit app
+### 3. Run steamlit app
 streamlit run dashboard.py
 
 
