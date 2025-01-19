@@ -74,7 +74,7 @@ with col3:
     st.markdown(f'<p style="font-size:20px;">{seller_count} </p>', unsafe_allow_html=True)
 
 # Jumlah pembayaran 
-with col3: 
+with col4: 
     st.write('Jumlah Revenue :') 
     payment_count = filtered_data['payment_value'].sum() 
     if pd.notnull(payment_count): 
