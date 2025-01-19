@@ -69,19 +69,29 @@ filtered_data = data[
 ]
 
 # Membuat kolom untuk visualisasi Jumlah order, Jumlah produk, Jumlah pembayaran
-col1, col2, col3 = st.columns(3) 
+#col1, col2, col3 = st.columns(3) 
+col1, col2, col3, col4 = st.columns(4)
 
 # Jumlah order 
 with col1: 
     st.write('Jumlah Order :') 
     order_count = filtered_data['order_id'].nunique()  
-    st.subheader(f'{order_count} pcs')
+    #st.subheader(f'{order_count} pcs')
+    st.markdown(f'<p style="font-size:20px;">{order_count} </p>', unsafe_allow_html=True)
 
 # Jumlah produk 
 with col2: 
     st.write('Jumlah Produk :') 
     product_count = filtered_data['product_id'].nunique()
-    st.subheader(f'{product_count} pcs')
+    #st.subheader(f'{product_count} pcs')
+    st.markdown(f'<p style="font-size:20px;">{product_count} </p>', unsafe_allow_html=True)
+
+# Jumlah seller 
+with col3: 
+    st.write('Jumlah Seller:') 
+    seller_count = filtered_data['seller_id'].nunique() 
+    #st.subheader(f'{seller_count}') 
+    st.markdown(f'<p style="font-size:20px;">{seller_count} </p>', unsafe_allow_html=True)
 
 # Jumlah pembayaran 
 with col3: 
@@ -101,7 +111,8 @@ with col3:
     else: 
         formatted_payment_count = "N/A"
         
-    st.subheader(formatted_payment_count)
+    #st.subheader(formatted_payment_count)
+    st.markdown(f'<p style="font-size:20px;">{formatted_payment_count} </p>', unsafe_allow_html=True)
 
 filtered_df = data[(data['order_purchase_timestamp'] >= pd.to_datetime(start_date)) & (data['order_purchase_timestamp'] <= pd.to_datetime(end_date))]
 
@@ -109,15 +120,38 @@ filtered_df = data[(data['order_purchase_timestamp'] >= pd.to_datetime(start_dat
 daily_orders = filtered_df.resample('D', on='order_purchase_timestamp').size().reset_index(name='order_count')
 
 # Visualisasikan data
-fig, ax = plt.subplots()
-ax.plot(daily_orders['order_purchase_timestamp'], daily_orders['order_count'], marker='o', linestyle='-')
-ax.set_xlabel('Tanggal')
-ax.set_ylabel('Jumlah Order')
-ax.set_title('Jumlah Order Harian Berdasarkan Rentang Waktu')
+#fig, ax = plt.subplots()
+#ax.plot(daily_orders['order_purchase_timestamp'], daily_orders['order_count'], marker='o', linestyle='-')
+#ax.set_xlabel('Tanggal')
+#ax.set_ylabel('Jumlah Order')
+#ax.set_title('Jumlah Order Harian Berdasarkan Rentang Waktu')
 # Putar label sumbu x agar vertikal 
-plt.xticks(rotation=45)
-st.pyplot(fig)
+#plt.xticks(rotation=45)
+#st.pyplot(fig)
 
+# Visualisasi data jumlah order harian berdasarkan rentang waktu yang dipilih 
+with col1: 
+    #st.write('Jumlah Order Harian:') 
+    daily_orders = filtered_data.resample('D', on='order_purchase_timestamp').size().reset_index(name='order_count') 
+    fig, ax = plt.subplots() 
+    ax.plot(daily_orders['order_purchase_timestamp'], daily_orders['order_count'], marker='o', linestyle='-') 
+    ax.set_xlabel('Tanggal') 
+    ax.set_ylabel('Jumlah Order') 
+    ax.set_title('Jumlah Order Harian') 
+    plt.xticks(rotation=90)
+    st.pyplot(fig) 
+
+# Visualisasi data jumlah revenue berdasarkan rentang waktu yang dipilih 
+with col2: 
+    #st.write('Jumlah Revenue Harian:') 
+    daily_revenue = filtered_data.resample('D', on='order_purchase_timestamp').sum()['payment_value'].reset_index(name='daily_revenue') 
+    fig, ax = plt.subplots() 
+    ax.bar(daily_revenue['order_purchase_timestamp'], daily_revenue['daily_revenue'], color=sns.color_palette('colorblind')) 
+    ax.set_xlabel('Tanggal') 
+    ax.set_ylabel('Jumlah Revenue') 
+    ax.set_title('Jumlah Revenue Harian') 
+    plt.xticks(rotation=90)
+    st.pyplot(fig)
 
 # Hitung nilai Recency, Frequency, dan Monetary 
 current_date = filtered_df['order_purchase_timestamp'].max() 
