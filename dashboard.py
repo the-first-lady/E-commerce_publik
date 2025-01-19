@@ -5,30 +5,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
 import locale
-#import os
 import requests
 import zipfile 
 import io
 from babel.numbers import format_currency
-
-
-# Unduh file dari tautan berbagi
-#url = 'https://drive.google.com/file/d/1ANRUYvOHgySQiG3bKIXbUVLFzhPwCBvu/view?usp=drive_link'
-#response = requests.get(url)
-#with open('all_data_ecommerce.csv', 'wb') as f:
-#    f.write(response.content)
-
-# Baca file CSV dan gunakan dalam aplikasi Streamlit
-#import pandas as pd
-
-#data = pd.read_csv('all_data_ecommerce.csv')
-#data['order_purchase_timestamp'] = pd.to_datetime(data['order_purchase_timestamp'])
-#st.write(data)
-
-# Membaca data dari file CSV dengan format tanggal yang benar
-#file_path = os.path.join('C:', 'Users', 'USER', 'Project_Python', 'Dicoding', 'proyek_analisis_data', 'dashboard', 'all_data_ecommerce.csv')
-#data = pd.read_csv('C:/Users/USER/Project_Python/Dicoding/proyek_analisis_data/dashboard/all_data_ecommerce.csv', parse_dates=['order_purchase_timestamp'])
-#data['order_purchase_timestamp'] = pd.to_datetime(data['order_purchase_timestamp'])
 
 # Unduh file .zip dari GitHub 
 url = 'https://github.com/the-first-lady/E-commerce_publik/raw/main/all_data_ecommerce.zip' 
@@ -97,15 +77,6 @@ with col3:
 with col3: 
     st.write('Jumlah Revenue :') 
     payment_count = filtered_data['payment_value'].sum() 
-#    locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')  # Mengatur lokal ke Amerika Serikat untuk format mata uang USD
-#    locale.setlocale(locale.LC_ALL, 'C.UTF-8')
-    # Mengatur lokal ke Amerika Serikat untuk format mata uang USD 
-#    try: 
-#        locale.setlocale(locale.LC_ALL, 'en_US.UTF-8') 
-#    except locale.Error: 
-#            locale.setlocale(locale.LC_ALL, 'C.UTF-8')
-#    formatted_payment_count = locale.currency(payment_count, grouping=True)
-
     if pd.notnull(payment_count): 
         formatted_payment_count = format_currency(payment_count, 'USD', locale='en_US') 
     else: 
@@ -130,28 +101,28 @@ daily_orders = filtered_df.resample('D', on='order_purchase_timestamp').size().r
 #st.pyplot(fig)
 
 # Visualisasi data jumlah order harian berdasarkan rentang waktu yang dipilih 
-with col1: 
+#with col1: 
     #st.write('Jumlah Order Harian:') 
-    daily_orders = filtered_data.resample('D', on='order_purchase_timestamp').size().reset_index(name='order_count') 
-    fig, ax = plt.subplots() 
-    ax.plot(daily_orders['order_purchase_timestamp'], daily_orders['order_count'], marker='o', linestyle='-') 
-    ax.set_xlabel('Tanggal') 
-    ax.set_ylabel('Jumlah Order') 
-    ax.set_title('Jumlah Order Harian') 
-    plt.xticks(rotation=90)
-    st.pyplot(fig) 
+daily_orders = filtered_data.resample('D', on='order_purchase_timestamp').size().reset_index(name='order_count') 
+fig, ax = plt.subplots() 
+ax.plot(daily_orders['order_purchase_timestamp'], daily_orders['order_count'], marker='o', linestyle='-') 
+ax.set_xlabel('Tanggal') 
+ax.set_ylabel('Jumlah Order') 
+ax.set_title('Jumlah Order Harian') 
+plt.xticks(rotation=90)
+st.pyplot(fig) 
 
 # Visualisasi data jumlah revenue berdasarkan rentang waktu yang dipilih 
-with col2: 
+#with col2: 
     #st.write('Jumlah Revenue Harian:') 
-    daily_revenue = filtered_data.resample('D', on='order_purchase_timestamp').sum()['payment_value'].reset_index(name='daily_revenue') 
-    fig, ax = plt.subplots() 
-    ax.bar(daily_revenue['order_purchase_timestamp'], daily_revenue['daily_revenue'], color=sns.color_palette('colorblind')) 
-    ax.set_xlabel('Tanggal') 
-    ax.set_ylabel('Jumlah Revenue') 
-    ax.set_title('Jumlah Revenue Harian') 
-    plt.xticks(rotation=90)
-    st.pyplot(fig)
+daily_revenue = filtered_data.resample('D', on='order_purchase_timestamp').sum()['payment_value'].reset_index(name='daily_revenue') 
+fig, ax = plt.subplots() 
+ax.bar(daily_revenue['order_purchase_timestamp'], daily_revenue['daily_revenue'], color=sns.color_palette('colorblind')) 
+ax.set_xlabel('Tanggal') 
+ax.set_ylabel('Jumlah Revenue') 
+ax.set_title('Jumlah Revenue Harian') 
+plt.xticks(rotation=90)
+st.pyplot(fig)
 
 # Hitung nilai Recency, Frequency, dan Monetary 
 current_date = filtered_df['order_purchase_timestamp'].max() 
